@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prayer Times">
+    <meta name="keywords" content="houre, date, api, adhan, Prayer Times, html, css, js, javaScript, Api, الاذان, تصميم المواقع, الساعة, التاريخ, تاريخ اليوم, البلدان ابياي, اوقات الصلاة ,البلدان, المدن,">
+    <meta name="author" content="ِahmede achalhi">
+    <title>Prayer Times</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+    <!-- ===== Section Loading Start ===== -->
+
+    <div class="loading">
+        <div class="circle"></div>
+        <div class="text">loading...</div>
+    </div>
+    <!-- ===== Section Loading end ===== -->
+
+
+
+    <!-- ===== Section Loading Start ===== -->
+
+    <div class="bg-img">
+        <img src="img/blue-mosque-istanbul.jpg" alt="">
+        <div class="bg-shadow"></div>
+    </div>
+    <!-- ===== Section Loading end ===== -->
+    
+    <!-- ===== Section Navbar Start ===== -->
+
+    <nav class="navbar">
+        
+        <div class="row">
+            <div class="logo">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="open-menu">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </div>
+            <ul class="menu">
+                <div class="close-menu">
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <li class="nav-item">
+                    <a href="" class="nav-link active" data-section="home">
+                        Home
+                        <div class="separator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" data-section="place">
+                        country
+                        <div class="separator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" data-section="prayer-times">
+                        Prayer times
+                        <div class="separator"></div>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="" class="nav-link" data-section="date">
+                        Date
+                        <div class="separator"></div>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="" class="nav-link" data-section="contact">
+                        contact
+                        <div class="separator"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- ===== Section Navbar End ===== -->
+    <!-- ===== Section Home Start ===== -->
+    
+    <section class="section-home" data-section="home">
+        <div class="container">
+            <div class="row">
+                
+                <div class="electronic-watch">
+                    <span></span>
+                </div>
+                <div class="clock">
+                    <div class="num">
+                        <span class="num-1">00</span>
+                        <span class="num-2">3</span>
+                        <span class="num-3">6</span>
+                        <span class="num-4">9</span>
+                    </div>
+                    <div class="hour">
+                        <div class="hr" id="hr"></div>
+                    </div>
+                    <div class="minut">
+                        <div class="mn" id="mn"></div>
+                    </div>
+                    <div class="second">
+                        <div class="sc" id="sc"></div>
+                    </div>
+                </div>
+                <div class="date-new">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Section Home End ===== -->
+
+
+
+    <!-- ===== Section Plase Start ===== -->
+
+    <section class="section-place hidden" id="place" data-section="place">
+        <div class="container">
+            <div class="row">
+
+                <div class="choice">
+
+                    <div class="search-country">
+                        <h3 class="choice-country" id="country">your county</h3>
+                        <input autocomplete="off" type="text" class="input-focus" id="search-country" placeholder="Find your country" onkeyup="searchCountry()">
+                    </div>
+
+                    <div class="search-city">
+                        <h3 class="choice-city" id="city">your city</h3>
+                        <input type="text" autocomplete="off" class="input-focus" id="search-city" placeholder="Find your city" onkeyup="searchCity()">
+                    </div>
+
+                </div>
+
+                <div class="country-city">
+
+                    <div class="content-country country-item" id="hidden-country">
+    
+                    </div>
+    
+                    <div class="content-city city-item" id="hidden-city">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Section Place End ===== -->
+
+
+    <!-- ===== Section Prayer times Start ===== -->
+
+
+    <section class="section-prayer-times hidden" id="prayer-times" data-section="prayer-times">
+        <div class="container">
+            <div class="row">
+                <div class="date-day-years">
+                    <p>choice your country and city</p>
+                </div>
+                <h1>Prayer times</h1>
+                <div class="prayer-times">
+                    <ul class="prayer">
+                        <li>Imsak</li>
+                        <li>Fajr</li>
+                        <li>Sunrise</li>
+                        <li>Dhuhr</li>
+                        <li>Asr</li>
+                        <li>Sunset</li>
+                        <li>Maghrib</li>
+                        <li>Isha</li>
+                        <li>Firstthird</li>
+                        <li>Midnight</li>
+                        <li>Lastthird</li>
+                    </ul>
+                    <ul class="times">
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                        <li>5:00M</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== Section Prayer times End ===== -->
+    <!-- ===== Section contact start ===== -->
+
+    <section class="section-contact hidden" id="contact" data-section="contact">
+        <div class="container">
+            <div class="row">
+                <form>
+                    <h3>Get in touch</h3>
+                    <input autocomplete="off" type="text" id="name" placeholder="Your Name" required>
+                    <input autocomplete="off" type="email" id="email" placeholder="email id" required>
+                    <input autocomplete="off" type="text" id="phone" placeholder="phone on." required>
+                    <textarea name="" id="msg" rows="4" placeholder="how can we help you?"></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- ===== Section contact end ===== -->
+
+    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+    <script src="script.js"></script>
+    
+    <!-- ===== ionicon link ======-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
