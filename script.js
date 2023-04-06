@@ -88,7 +88,7 @@ let dateMonth = date.getMonth() + 1;
 let dateDay = date.getDate();
 let dateTostring = `${dateDay}-${dateMonth}-${date.getFullYear()}`;
 if (dateMonth < 10 || dateDay < 10) {
-    dateTostring = `${dateDay}-0${dateMonth}-${date.getFullYear()}`;
+    dateTostring = `0${dateDay}-0${dateMonth}-${date.getFullYear()}`;
 }
 
 document.querySelector(".date-new").innerHTML = `<span>${dateTostring}</span>`;
