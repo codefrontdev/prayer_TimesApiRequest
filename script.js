@@ -36,45 +36,29 @@ btnOpen.addEventListener("click", () => {
 
 
 
-// const audioClick = new Audio("/Prayer-times/song/mixkit-fast-double-click-on-mouse-275.wav");
-// const audioAnimation = new Audio("/Prayer-times/song/mixkit-video-game-retro-click-237.wav");
 let section = document.querySelectorAll("section");
 let navLink = document.querySelectorAll(".nav-link");
 
-let audio;
 
 
-function playSong() {
-    navLink.forEach((e) => {
-        e.addEventListener("click", (x) => {
-            x.preventDefault()
-            navLink.forEach((el) => {
-                el.classList.remove("active")
-            })    
-            
-            e.classList.add("active");
-            // audioClick.play();
-            menu.classList.remove("active");
-            for (let sect of section) {
-                
-                sect.classList.add("hidden")
-                if (sect.getAttribute("data-section") === e.getAttribute("data-section")) {
-                    sect.classList.remove("hidden")
-                }    
-            }    
+navLink.forEach((e) => {
+    e.addEventListener("click", (x) => {
+        x.preventDefault()
+        navLink.forEach((el) => {
+            el.classList.remove("active")
         })    
-        // e.addEventListener("mouseover", (x) => {
-        //     if (e.classList.contains("active")) {
-        //         audioAnimation.pause()
-        //     } else {
-        //         audioAnimation.play()
-        //     }    
-        // })    
-    })    
-}    
-
-playSong()
-
+        
+        e.classList.add("active");
+        menu.classList.remove("active");
+        for (let sect of section) {
+            
+            sect.classList.add("hidden")
+            if (sect.getAttribute("data-section") === e.getAttribute("data-section")) {
+                sect.classList.remove("hidden")
+            }    
+        }    
+    })     
+});
 
 
 
@@ -175,8 +159,6 @@ window.onload = function () {
 // ======================= click country for choice
 let inputs = document.querySelectorAll(".input-focus");
 function getData(is2, contr, ...cityText) {
-    
-    // audioClick.play();
     inputs[0].value = "";
     
     city.innerHTML = "";
@@ -215,11 +197,8 @@ function getData(is2, contr, ...cityText) {
 // ================= click or choice in city
 
 
-function getTime(iso2, cty) {
-    
+function getTime(is2, cty) {
     inputs[1].value = "";
-
-    // audioClick.play();
     
     document.getElementById("prayer-times").classList.remove("hidden");
     document.getElementById("place").classList.add("hidden");
@@ -241,7 +220,7 @@ function getTime(iso2, cty) {
         country.classList.add("active");
     }
     choiceCity.textContent += ":  " + cty;
-    getPostsAdhan(iso2, cty)
+    getPostsAdhan(is2, cty)
 }
 
 
@@ -251,12 +230,14 @@ function getTime(iso2, cty) {
 function getPostsAdhan(e, t) {
     fetch(`https://api.aladhan.com/v1/calendarByCity?country=${e}&city=${t}`)
     .then(response => {
+        console.log(response)
         if (response.ok)
         {
             return response.json()
         }
     }).then((prayer) => {
         for (let prayerData of prayer.data) {
+            
             if (prayerData.date.gregorian.date === dateTostring) {
                 let content = `
                 <li>${prayerData.timings.Imsak}</li>
@@ -273,26 +254,24 @@ function getPostsAdhan(e, t) {
                 
                 document.querySelector(".times").innerHTML = content;
                 
-                let contentDate = `<span>${prayerData.date.gregorian.weekday.en} ${prayerData.date.gregorian.month.en} ${prayerData.date.gregorian.year}</span>`;
+                let contentDate = `<span>
+                ${prayerData.date.gregorian.weekday.en} 
+                ${prayerData.date.gregorian.month.en} 
+                ${prayerData.date.gregorian.year}
+                </span>`;
                 
                 document.querySelector(".date-day-years").innerHTML = contentDate;
             }
-            console.log(e)
-            console.log(t)
         }
     })
 }
 
-getPostsAdhan()
+getPostsAdhan('AF', 'Herat')
 
-// window.navigator.geolocation.getCurrentPosition(console.log, console.log);
-
-// getCurrentPosition(successCallback, failureCallback);
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((location) => {
         console.log()
         console.log()
-        // getPostsAdhan(location.coords.latitude, location.coords.longitude)
     },
     (eror) => {
 
@@ -309,8 +288,6 @@ if (navigator.geolocation) {
 
 function clickChoice() {
     choiceCountry.addEventListener("click", () => {
-        
-        // audioClick.play();
 
         if (country.classList.contains("active")) 
         {
@@ -333,8 +310,6 @@ function clickChoice() {
     });
     
     choiceCity.addEventListener("click", () => {
-
-        // audioClick.play();
 
         if (city.children.length === 0) {
             if (country.classList.contains("active")) 
@@ -364,9 +339,6 @@ clickChoice()
 let input = document.querySelectorAll(".input-focus");
 
 input[0].addEventListener("focus", () => {
-    
-    
-    // audioClick.play();
 
     if (!city.classList.contains("active")) 
         {
@@ -381,8 +353,6 @@ input[0].addEventListener("focus", () => {
 // ===============focus input city
 
 input[1].addEventListener("focus", () => {
-    
-    // audioClick.play();
 
     if (city.children.length === 0) {
         if (country.classList.contains("active")) 
@@ -447,5 +417,4 @@ const searchCity = () => {
         }
     }
 } 
-
 
