@@ -226,60 +226,100 @@ function getTime(is2, cty) {
 
 // ================= request Api aladhan 
     
-    
 function getPostsAdhan(e, t) {
-    fetch(`https://api.aladhan.com/v1/calendarByCity?country=${e}&city=${t}`)
-    .then(response => {
-        console.log(response)
-        if (response.ok)
-        {
-            return response.json()
+    if (e === undefined && t === undefined){
+        var longitude;
+        let latitude = null;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((location) => {
+                latitude = location.coords.latitude;
+                longitude = location.coords.longitude;
+                
+                fetch(
+                    `http://api.aladhan.com/v1/calendar/
+                    ${date.getFullYear()}?
+                    latitude=${latitude}&longitude=${longitude}`)
+                .then(response => {
+                    if (response.ok)
+                    {
+                        return response.json()
+                    }
+                }).then((prayer) => {
+
+                    let dateData = prayer.data[date.getMonth() + 1][date.getDay() + 1];
+                    console.log(dateData)
+                            let content = `
+                            <li>${dateData.timings.Imsak.split(' ')[0]}</li>
+                            <li>${dateData.timings.Fajr.split(' ')[0]}</li>
+                            <li>${dateData.timings.Sunrise.split(' ')[0]}</li>
+                            <li>${dateData.timings.Dhuhr.split(' ')[0]}</li>
+                            <li>${dateData.timings.Asr.split(' ')[0]}</li>
+                            <li>${dateData.timings.Sunset.split(' ')[0]}</li>
+                            <li>${dateData.timings.Maghrib.split(' ')[0]}</li>
+                            <li>${dateData.timings.Isha.split(' ')[0]}</li>
+                            <li>${dateData.timings.Firstthird.split(' ')[0]}</li>
+                            <li>${dateData.timings.Midnight.split(' ')[0]}</li>
+                            <li>${dateData.timings.Lastthird.split(' ')[0]}</li>`;
+                            
+                            document.querySelector(".times").innerHTML = content;
+                            
+                            let contentDate = `<span>
+                            ${dateData.date.gregorian.weekday.en} 
+                            ${dateData.date.gregorian.month.en} 
+                            ${dateData.date.gregorian.year}
+                            </span>`;
+                            
+                            document.querySelector(".date-day-years").innerHTML = contentDate;
+                })
+            },
+            (eror) => {
+
+                console.log(eror)
+            })
         }
-    }).then((prayer) => {
-        for (let prayerData of prayer.data) {
-            
-            if (prayerData.date.gregorian.date === dateTostring) {
-                let content = `
-                <li>${prayerData.timings.Imsak}</li>
-                <li>${prayerData.timings.Fajr}</li>
-                <li>${prayerData.timings.Sunrise}</li>
-                <li>${prayerData.timings.Dhuhr}</li>
-                <li>${prayerData.timings.Asr}</li>
-                <li>${prayerData.timings.Sunset}</li>
-                <li>${prayerData.timings.Maghrib}</li>
-                <li>${prayerData.timings.Isha}</li>
-                <li>${prayerData.timings.Firstthird}</li>
-                <li>${prayerData.timings.Midnight}</li>
-                <li>${prayerData.timings.Lastthird}</li>`;
-                
-                document.querySelector(".times").innerHTML = content;
-                
-                let contentDate = `<span>
-                ${prayerData.date.gregorian.weekday.en} 
-                ${prayerData.date.gregorian.month.en} 
-                ${prayerData.date.gregorian.year}
-                </span>`;
-                
-                document.querySelector(".date-day-years").innerHTML = contentDate;
+    } else {
+        fetch(`https://api.aladhan.com/v1/calendarByCity?country=${e}&city=${t}`)
+        .then(response => {
+            if (response.ok)
+            {
+                return response.json()
             }
-        }
-    })
+        }).then((prayer) => {
+            for (let prayerData of prayer.data) {
+                console.log(prayerData.meta.latitude)
+                console.log(prayerData.meta.longitude)
+                
+                if (prayerData.date.gregorian.date === dateTostring) {
+                    console.log(prayerData.timings.Imsak.split(' ')[0])
+                    let content = `
+                    <li>${prayerData.timings.Imsak.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Fajr.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Sunrise.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Dhuhr.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Asr.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Sunset.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Maghrib.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Isha.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Firstthird.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Midnight.split(' ')[0]}</li>
+                    <li>${prayerData.timings.Lastthird.split(' ')[0]}</li>`;
+                    
+                    document.querySelector(".times").innerHTML = content;
+                    
+                    let contentDate = `<span>
+                    ${prayerData.date.gregorian.weekday.en} 
+                    ${prayerData.date.gregorian.month.en} 
+                    ${prayerData.date.gregorian.year}
+                    </span>`;
+                    
+                    document.querySelector(".date-day-years").innerHTML = contentDate;
+                }
+            }
+        })
+    }
 }
 
-getPostsAdhan('AF', 'Herat')
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((location) => {
-        console.log()
-        console.log()
-    },
-    (eror) => {
-
-    console.log(eror)
-    })
-} else {
-
-}
+getPostsAdhan()
 
 // =======================================
 // =================== Click Choice
