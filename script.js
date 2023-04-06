@@ -286,8 +286,6 @@ function getPostsAdhan(e, t) {
             }
         }).then((prayer) => {
             for (let prayerData of prayer.data) {
-                console.log(prayerData.meta.latitude)
-                console.log(prayerData.meta.longitude)
                 
                 if (prayerData.date.gregorian.date === dateTostring) {
                     console.log(prayerData.timings.Imsak.split(' ')[0])
