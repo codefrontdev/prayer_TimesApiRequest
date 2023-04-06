@@ -226,6 +226,7 @@ function getTime(is2, cty) {
 
 // ================= request Api aladhan 
     
+    
 function getPostsAdhan(e, t) {
     if (e === undefined && t === undefined){
         var longitude;
@@ -318,6 +319,7 @@ function getPostsAdhan(e, t) {
 }
 
 getPostsAdhan()
+
 
 // =======================================
 // =================== Click Choice
@@ -455,4 +457,5 @@ const searchCity = () => {
         }
     }
 } 
+
 
