@@ -71,8 +71,11 @@ let date = new Date();
 let dateMonth = date.getMonth() + 1;
 let dateDay = date.getDate();
 let dateTostring = `${dateDay}-${dateMonth}-${date.getFullYear()}`;
-if (dateMonth < 10 || dateDay < 10) {
-    dateTostring = `0${dateDay}-0${dateMonth}-${date.getFullYear()}`;
+if (dateMonth < 10 ) {
+    dateTostring = `${dateDay}-0${dateMonth}-${date.getFullYear()}`;
+}
+if (dateDay < 10) {
+    dateTostring = `0${dateDay}-${dateMonth}-${date.getFullYear()}`;
 }
 
 document.querySelector(".date-new").innerHTML = `<span>${dateTostring}</span>`;
@@ -237,7 +240,7 @@ function getPostsAdhan(e, t) {
                 longitude = location.coords.longitude;
                 
                 fetch(
-                    `http://api.aladhan.com/v1/calendar/
+                    `https://api.aladhan.com/v1/calendar/
                     ${date.getFullYear()}?
                     latitude=${latitude}&longitude=${longitude}`)
                 .then(response => {
