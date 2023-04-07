@@ -239,10 +239,7 @@ function getPostsAdhan(e, t) {
                 latitude = location.coords.latitude;
                 longitude = location.coords.longitude;
                 
-                fetch(
-                    `https://api.aladhan.com/v1/calendar/
-                    ${date.getFullYear()}?
-                    latitude=${latitude}&longitude=${longitude}`)
+                fetch(`https://api.aladhan.com/v1/calendar/${date.getFullYear()}?latitude=${latitude}&longitude=${longitude}`)
                 .then(response => {
                     if (response.ok)
                     {
